@@ -23,10 +23,7 @@ class PostType extends AbstractType
                     "Activer" => true,
                     "Pas activer" => false
                 ),
-            ])
-            ->add('slug')
-            ->add('dateCreated')
-            ->add('dateUpdate');
+            ]);
     }
     
     /**

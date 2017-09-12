@@ -18,9 +18,31 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
+        $em = $this->getDoctrine()->getManager();
+
+        $posts = $em->getRepository('AppBundle:Post')->findByPublic(true);
+
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'posts' => $posts
+        ]);
+    }
+
+    /**
+     * @param String $slug
+     * @Route("article/{slug}", name="article_display")
+     */
+    public function articleAction($slug)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository("AppBundle:Post")->findOneBy(
+            [
+            'slug' => $slug,
+            'public' => true
+            ]
+        );
+
+        return $this->render('default/post.html.twig', [
+            "post" => $post
         ]);
     }
 

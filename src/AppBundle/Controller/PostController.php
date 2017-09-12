@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Post controller.
  *
- * @Route("post")
+ * @Route("admin/post")
  */
 class PostController extends Controller
 {
@@ -25,7 +25,7 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $posts = $em->getRepository('AppBundle:Post')->findByTitle("post 2");
+        $posts = $em->getRepository('AppBundle:Post')->findAll();
 
         return $this->render('post/index.html.twig', array(
             'posts' => $posts,
@@ -46,6 +46,9 @@ class PostController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $post->setUser($this->getUser());
+
             $em->persist($post);
             $em->flush();
 

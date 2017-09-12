@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Post
@@ -45,6 +46,7 @@ class Post
     /**
      * @var string
      *
+     * @Gedmo\Slug(fields={"title"}, updatable=true, separator="-")
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
@@ -62,6 +64,12 @@ class Post
      * @ORM\Column(name="dateUpdate", type="datetimetz", nullable=true)
      */
     private $dateUpdate;
+
+    /**
+     * @var User $user
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     */
+    private $user;
 
     public function __construct()
     {
@@ -221,6 +229,22 @@ class Post
     public function getDateUpdate()
     {
         return $this->dateUpdate;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
     }
 }
 
