@@ -8,4 +8,17 @@
         </p>
     </article>
 
+    <div>
+        {% for comment in comments %}
+            {{ comment.content }} <br/>
+        {% endfor %}
+    </div>
+
+    <div>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+            <input type="submit" value="Create" />
+        {{ form_end(form) }}
+    </div>
+
 {% endblock %}
