@@ -36,11 +36,6 @@ services:
         calls:
             - [ setAnnotationReader, ["@annotation_reader"]]
 
-    app.twig_extension:
-        class: AppBundle\Twig\AppExtension
-        public: false
-        tags:
-            - { name: twig.extension }
 
     my.listener:
         class: AppBundle\Event\ExampleListener

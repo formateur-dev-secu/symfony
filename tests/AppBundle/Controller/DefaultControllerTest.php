@@ -2,10 +2,18 @@
 
 namespace Tests\AppBundle\Controller;
 
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestCaseTest;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * @test
+ */
 class DefaultControllerTest extends WebTestCase
 {
+    /**
+     * @test
+     */
     public function testIndex()
     {
         $client = static::createClient();
